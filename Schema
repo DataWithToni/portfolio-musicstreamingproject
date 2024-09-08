@@ -1,0 +1,346 @@
+--The Schema
+--USERS
+CREATE TABLE users
+(User_id INT PRIMARY KEY AUTO_INCREMENT,
+ first_name VARCHAR(10) NOT NULL,
+ last_name VARCHAR(15),
+ email VARCHAR(50) UNIQUE NOT NULL,
+ subscription_type VARCHAR(4) DEFAULT 'FREE',
+ registration_date DATE);
+
+
+--INSERTING USERS DATA
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Toni','Leigh','toni.l@proxy.com','Paid','2022-05-12');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Jamie','Johnson','Jamie.J@proxy.com','Paid','2023-06-12');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Sarah','Jane','Sarah.J@proxy.com','Free','2023-08-12');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Mike','Tom','Mike.T@gmail.com','Free','2021-12-12');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Lee','Thomas','Lee.T@outlook.com','Paid','2022-09-26');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('June','Plum','June.P@proxy.com','Free','2024-07-17');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Leroy','Palmer','Leroy.P@test.com','Paid','2023-07-14');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Sylvester','Grant','SylvesterG@proxy.com','Paid','2022-05-12');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Lisa','Banton','Banton.Lisa@email.com','Free','2024-10-08');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Tim','Luciano','TimLuci@mail.com','Paid','2021-12-01');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Daniel','Sangster','DanDanSang@proxy.com','Free','2023-10-04');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Tony','Stevens','StevensTony@freemail.com','Paid','2024-08-29');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Susie','Frank','SusiFr@proxy.com','Paid','2021-11-12');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Sammy','Frank','Sammy.F@email.com','Free','2022-10-02');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Duke','Beaker','BeakerD@hotmail.com','Paid','2023-10-12');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Morgan','Heritage','M.Heritage@aol.com','Paid','2020-05-09');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Lucian','Frank','Frank.Lucian@mail.com','Free','2020-04-17');
+INSERT INTO users (first_name, last_name, email, subscription_type, registration_date)
+VALUES ('Sharon','Mango','Mangoshar@outlook.com','Paid','2022-12-01');
+
+--UPDATING USERS TABLE 
+UPDATE users
+SET registration_date = '2019-09-01'
+WHERE registration_date = '2023-06-12';
+UPDATE users
+SET registration_date = '2019-01-01'
+WHERE registration_date = '2023-08-12';
+UPDATE users 
+SET registration_date = '2017-09-04'
+WHERE registration_date = '2022-09-26';
+UPDATE users
+SET registration_date = '2018-03-04'
+WHERE registration_date = '2023-07-14';
+UPDATE users
+SET registration_date = '2020-10-09'
+WHERE registration_date = '2024-07-17';
+UPDATE users
+SET registration_date = '2019-09-01'
+WHERE registration_date = '2023-07-14';
+UPDATE users
+SET registration_date = '2018-05-06'
+WHERE registration_date = '2024-10-08';
+UPDATE users
+SET registration_date = '2019-04-10'
+WHERE registration_date = '2023-10-04';
+UPDATE users
+SET registration_date = '2010-09-08'
+WHERE registration_date = '2024-08-29';
+UPDATE users
+SET registration_date = '2010-04-04'
+WHERE registration_date = '2022-10-02';
+UPDATE users
+SET registration_date = '2009-08-10'
+WHERE registration_date = '2023-10-12';
+UPDATE users
+SET registration_date = '2019-10-04'
+WHERE registration_date = '2022-12-01';
+
+--ARTISTS
+CREATE TABLE artists
+(artist_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR (30) UNIQUE NOT NULL,
+genre VARCHAR (50) NOT NULL, 
+country VARCHAR (15) NOT NULL,
+active_since DATE);
+
+--INSERT ARTISTS DATA
+INSERT INTO artists VALUES (100, 'Bob Marley','Reggae,Roots,Ska','Jamaica','1961-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Peter Tosh','Reggae,Roots','Jamaica','1961-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Burning Spear','Reggae,Roots','Jamaica','1969-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Jimmy Cliff','Reggae,Ska, Rocksteady','Jamaica','1962-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Toots Hibbert','Reggae,Ska,Rocksteady','Jamaica','1961-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Dennis Brown','Reggae,Lovers Rock','Jamaica','1967-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Freddie McGregor','Reggae,Lovers Rock, Roots','Jamaica','1963-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Frank Ocean','Alt R&B, Neo Soul','USA','2010-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('The Weeknd','Alt R&B, Pop, Synth Pop','Canada','2010-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('SZA','Alt R&B, Neo-Soul','USA','2012-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Jhene Aiko','Alt R&B, Neo Soul','USA','2002-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Brent Faiyaz','Alt R&B','USA','2014-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('James Brown','Funk, Soul, R&B','USA','1953-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Bootsy Collins','Funk, P-Funk, Funk Rock','USA','1968-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Earth, Wind & Fire','Funk, Soul, R&B','USA','1969-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Al Green','Soul, R&B, Gospel','USA','1967-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Tupac Shakur','Hip-Hop, West Coast Rap, Gangsta Rap','USA','1991-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Nas','Hip-Hop, East Coast Rap','USA','1991-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Drake','Hip-Hop, Rap, R&B','Canada','2006-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Cruza','Alt R&B, Indie, Hip-Hop','USA','2019-01-01');
+INSERT INTO artists (name,genre,country,active_since)
+VALUES ('Steve Lacy','Alt R&B, Funk, Neo-Soul, Indie Rock','USA','2013-01-01');
+
+--SONGS
+CREATE TABLE songs
+(artist VARCHAR (30),
+song_id INT PRIMARY KEY AUTO_INCREMENT,
+title VARCHAR(50),
+duration_seconds INT,
+album_id INT (50),
+release_date DATE,
+FOREIGN KEY (artist) REFERENCES artists (name),
+FOREIGN KEY (album_id) REFERENCES albums (album_id));
+
+--INSERT SONGS DATA 
+INSERT INTO songs VALUES ('Freddie McGregor',200, 'Night Nurse', 278, 1006,'2011-07-03');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Freddie Mcgregor', 'Rumours',270,1006,'2011-07-03');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Frank Ocean', 'Thinkin Bout You',231,1007,'2012-07-10'),
+ ('Frank Ocean', 'Pyramids',330,1007,'2012-07-10');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Bob Marley', 'Exodus',226,1000,'1966-06-03'),
+('Bob Marley', 'One Love/People Get Ready',282,1000,'1966-06-03');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Peter Tosh', 'Maga Dog',248,1001,'1979-01-05'),
+ ('Peter Tosh', 'Burial',254,1001,'1979-01-05');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Burning Spear', 'Marcus Garvey',334,1002,'1975-06-05'),
+ ('Burning Spear', 'Columbus',290,1002,'1975-06-05');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Jimmy Cliff', 'You Can Get It If You Really Want It',190,1003,'1969-08-09'),
+ ('Jimmy Cliff', 'Many Rivers To Cross',239,1003,'1969-08-09');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Toots Hibbert', 'Pomps and Pride',186,1004,'1998-04-05'),
+('Toots Hibbert', 'Monkey Man',226,1004,'1998-04-05');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Dennis Brown', 'Wolf & Leopards',251,1005,'1977-10-05'),
+('Dennis Brown', 'Aint That Loving You',248,1005,'1977-10-05');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('The Weeknd', 'Starboy', 229, 1008, '2016-11-25'),
+  ('The Weeknd', 'I Feel It Coming', 215, 1008, '2016-11-25');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('SZA', 'Supermodel', 194, 1009, '2017-06-09'),
+('SZA', 'The Weekend', 261, 1009, '2017-06-09');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Jhené Aiko', 'The Pressure', 227, 1010, '2014-09-09'),
+('Jhené Aiko', 'The Worst', 236, 1010, '2014-09-09');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Brent Faiyaz', 'Gang Over Luv', 242, 1011, '2017-10-27'),
+ ('Brent Faiyaz', 'Been Away', 215, 1011, '2017-10-27');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('James Brown', 'Ill Go Crazy', 183, 1012, '1963-10-21'),
+('James Brown', 'Lost Someone', 275, 1012, '1963-10-21');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Bootsy Collins', 'Stretchin Out', 366, 1013, '1976-06-07'),
+ ('Bootsy Collins', 'Bootsy Whats the Name of This Town', 275, 1013, '1976-06-07');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Earth, Wind & Fire', 'Shining Star', 263, 1014, '1975-03-19'),
+('Earth, Wind & Fire', 'Thats the Way of the World', 296, 1014, '1975-03-19');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Al Green', 'Lets Stay Together', 205, 1015, '1972-01-01'),
+('Al Green', 'How Can You Mend a Broken Heart', 228, 1015, '1972-01-01');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Tupac Shakur', 'California Love', 237, 1016, '1996-02-13'),
+('Tupac Shakur', '2 of Amerikaz Most Wanted', 270, 1016, '1996-02-13');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Nas', 'N.Y. State of Mind', 297, 1017, '1994-04-19'),
+('Nas', 'The World Is Yours', 279, 1017, '1994-04-19');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Drake', 'Marvins Room', 239, 1018, '2011-11-15'),
+('Drake', 'Take Care', 284, 1018, '2011-11-15');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Cruza', 'Get Up', 228, 1019, '2017-06-01'),
+('Cruza', 'Try Again', 235, 1019, '2017-06-01');
+INSERT INTO songs (artist, title, duration_seconds, album_id, release_date)
+VALUES ('Steve Lacy', 'Playground', 181, 1020, '2019-05-24'),
+('Steve Lacy', 'N Side', 214, 1020, '2019-05-24');
+
+--ALBUMS
+CREATE TABLE albums
+(album_id INT PRIMARY KEY AUTO_INCREMENT,
+artist VARCHAR (30),
+FOREIGN KEY (artist) REFERENCES artists (name),
+title VARCHAR(50), 
+release_date DATE);
+
+--INSERTING ALBUM DATA 
+INSERT INTO albums VALUES (1000, 'Bob Marley','Exodus', '1966-06-03');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Peter Tosh','Mystic Man','1979-01-05');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Burning Spear','Marcus Garvey','1975-06-05');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Jimmy Cliff','Jimmy Cliff','1969-08-09');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Toots Hibbert','Thats My Number','1998-04-05');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Dennis Brown','Wolf and Leopards','1977-10-05');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Freddie McGregor', 'Freddie McGregor Sings Gregory Isaacs', '2011-07-03');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Frank Ocean', 'Channel Orange', '2012-07-10');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('The Weeknd', 'Starboy', '2016-11-25');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('SZA', 'Ctrl', '2017-06-09');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Jhené Aiko', 'Souled Out', '2014-09-09');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Brent Faiyaz', 'Sonder Son', '2017-10-27');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('James Brown', 'Live at the Apollo', '1963-10-21');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Bootsy Collins', 'Stretchin Out in Bootsys Rubber Band', '1976-06-07');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Earth, Wind & Fire', 'Thats the Way of the World', '1975-03-19');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Al Green', 'Lets Stay Together', '1972-01-01');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Tupac Shakur', 'All Eyez on Me', '1996-02-13');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Nas', 'Illmatic', '1994-04-19');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Drake', 'Take Care', '2011-11-15');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Cruza', 'Cruza', '2017-06-01');
+INSERT INTO albums (artist, title, release_date)
+VALUES ('Steve Lacy', 'Apollo XXI', '2019-05-24');
+
+
+--Playlists
+CREATE TABLE playlists
+(playlist_id INT PRIMARY KEY AUTO_INCREMENT,
+user_id INT,
+FOREIGN KEY (user_id) REFERENCES users (user_id),
+name VARCHAR(50),
+creation_date DATE);
+
+--INSERTING PLAYLISTS DATA
+INSERT INTO playlists 
+VALUES (200,6, 'Mixed Playlist', '2024-07-01');
+INSERT INTO playlists (user_id, name, creation_date)
+VALUES (25, 'Reggae Mix', '2022-09-02'),
+(5, 'New Playlist1', '2023-05-06'),
+(1, 'Music123', '2022-09-01'),
+(1, 'PlaylistMusic','2024-09-08'),
+(8, 'Reggae', '2024-01-09'),
+(9, 'R&B and Funk','2024-11-09');
+
+--Playlist songs 
+CREATE TABLE playlist_songs
+(playlist_id INT,
+FOREIGN KEY (playlist_ID) REFERENCES playlists (playlist_ID),
+song_id INT,
+FOREIGN KEY (song_id) REFERENCES songs (song_id),
+PRIMARY KEY (playlist_id, song_id),
+date_added DATE);
+
+--INSERTING PLAYLIST SONGS DATA 
+INSERT INTO playlist_songs
+VALUES(200, 200, '2024-07-01'),
+(200, 210, '2024-07-01'),
+(200, 205, '2024-07-01'),
+(200, 208, '2024-07-01'),
+(200, 209, '2024-07-01'),
+(200, 201, '2024-07-02');
+INSERT INTO playlist_songs
+VALUES(201, 200, '2022-09-02'),
+(201, 204, '2022-09-02'),
+(201, 206, '2022-09-02'),
+(201, 208, '2022-09-02'),
+(201, 210, '2022-09-04'),
+(201, 214, '2022-09-04'),
+(201, 215, '2022-09-05'),
+(201, 211, '2022-09-04');
+INSERT INTO playlist_songs
+VALUES(202, 240, '2023-05-06'),
+(202, 238, '2023-05-06'),
+(202, 201, '2023-05-07'),
+(202, 233, '2023-05-07'),
+(202, 229, '2023-05-08');
+INSERT INTO playlist_songs
+VALUES(203, 240, '2022-09-05'),
+(203, 220, '2022-09-05'),
+(203, 210, '2022-09-05'),
+(203, 212, '2022-09-05'),
+(203, 231, '2022-09-05'),
+(203, 222, '2022-09-06'),
+(203, 241, '2022-09-06');
+INSERT INTO playlist_songs
+VALUES(204, 220, '2024-09-10'),
+(204, 217, '2024-09-10'),
+(204, 212, '2024-09-10'),
+(204, 219, '2024-09-10'),
+(204, 202, '2024-09-10'),
+(204, 205, '2024-09-10');
+INSERT INTO playlist_songs
+VALUES(205, 200, '2024-01-09'),
+(205, 204, '2024-01-09'),
+(205, 203, '2024-01-09'),
+(205, 207, '2024-01-10'),
+(205, 201, '2024-01-11'),
+(205, 202, '2024-02-01');
+INSERT INTO playlist_songs
+VALUES(206, 229, '2024-01-09'),
+(206, 225, '2024-01-09'),
+(206, 222, '2024-01-09'),
+(206, 215, '2024-01-09'),
+(206, 238, '2024-01-09'),
+(206, 241, '2024-01-09');
