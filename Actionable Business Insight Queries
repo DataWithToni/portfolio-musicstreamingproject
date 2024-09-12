@@ -1,0 +1,116 @@
+--User Engagement and Behaviour
+-- 1. QUESTION: What is the distribution of users by subscription plan (free vs. paid)?
+SELECT COUNT (User_id), subscription_type
+FROM users
+GROUP BY subscription_type;
+--1. ANSWER: There are 11 (61%) paid users and 7 (39%) free users. 
+
+--2. QUESTION Which users have added the most songs to their playlists?
+SELECT * FROM playlist_songs;
+
+SELECT COUNT(song_id), playlist_id
+FROM playlist_songs
+GROUP BY playlist_id;
+
+SELECT CONCAT (users.first_name, users.last_name) AS name, users.user_id, playlists.playlist_id, playlists.name, COUNT(playlist_songs.song_id)
+FROM users
+INNER JOIN playlists ON playlists.user_id = users.user_id
+INNER JOIN playlist_songs ON playlist_songs.playlist_id = playlists.playlist_id
+GROUP BY playlists.playlist_id
+ORDER BY COUNT (playlist_songs.song_id) DESC;
+---2. ANSWER: Susie Frank has added the most songs to her playlist 'Reggae Mix', she has added 8 songs thus far.
+
+-- Content Popularity and Performance
+--3. QUESTION:  What song has the highest number of playlist additions?
+SELECT COUNT (playlist_songs.date_added), playlist_songs.song_id, songs.title, songs.artist
+FROM playlist_songs
+JOIN songs
+ON songs.song_id = playlist_songs.song_id
+GROUP BY song_id
+ORDER BY COUNT (date_added) DESC;
+--3. ANSWER: Night Nurse by Freddie Mcgregor, Rumours by Freddie McGregor and You Can Get It If You Really Want it by Jimmy Cliff 
+--all have 3 playlist additions.
+
+--4. QUESTION: Which genre is the most popular?
+SELECT genre, name
+FROM artists 
+WHERE name =  'Jimmy Cliff'
+OR name = 'Freddie McGregor';
+--4. ANSWER: We can conclude that Reggae is the most popular genre.
+
+--5. QUESTION: What % of users have created a playlist?
+SELECT COUNT (playlists.User_id), COUNT (users.user_id), COUNT (playlists.User_id) / COUNT (users.user_id) * 100 AS '% of users who have created a playlist'
+FROM playlists
+RIGHT JOIN users
+ON users.user_id = playlists.user_id;
+--5. ANSWER: 37% of all users have created a playlist.
+
+--Artist/Song Analytics
+--6. QUESTION: How many unique songs are added to playlists each year?
+--Gave count of each date added
+SELECT COUNT (DISTINCT song_id), date_added
+FROM playlist_songs
+GROUP BY date_added 
+ORDER BY date_added DESC;
+-- Gave count of each date in 2024
+SELECT COUNT ( DISTINCT song_id), date_added
+FROM playlist_songs
+WHERE date_added LIKE '2024%'
+GROUP BY date_added
+ORDER BY date_added DESC;
+--Gave total count in 2024. I still needed the date_added column and also needed a way to concat rows. CONCAT and CONCAT_WM concatenate columns so I researched if there is a function for rows. 
+SELECT COUNT ( DISTINCT song_id)
+FROM playlist_songs
+WHERE date_added LIKE '2024%';
+--Final:
+SELECT COUNT ( DISTINCT song_id), GROUP_CONCAT (date_added) AS 'Years'
+FROM playlist_songs
+WHERE date_added LIKE '2024%'
+UNION
+SELECT COUNT (DISTINCT song_id), GROUP_CONCAT (date_added) 
+FROM playlist_songs
+WHERE date_added LIKE '2023%'
+UNION
+SELECT COUNT (DISTINCT song_id), GROUP_CONCAT (date_added)
+FROM playlist_songs
+WHERE date_added LIKE '2022%'
+UNION
+SELECT COUNT (DISTINCT song_id), GROUP_CONCAT (date_added)
+FROM playlist_songs
+WHERE date_added LIKE '2021%';
+-- 6. ANSWER: In 2024 20 songs were added to playlists, 2023 - 5 and 2022 - 14. No songs were added to playlists in 2022
+
+--7. QUESTION: Which songs came out in the last 20 years?
+SELECT title, artist, release_date
+FROM songs
+WHERE release_date >= '2004-01-01';
+--7. ANSWER: For berevity, the above query returned all songs released in or after 1st January 2004.
+
+--8. QUESTION: Which songs have not been added to any playlists?
+SELECT DISTINCT songs.artist, songs.title, playlist_songs.song_id, playlist_songs.playlist_id
+FROM songs
+LEFT JOIN playlist_songs
+ON playlist_songs.song_id = songs.song_id
+ORDER BY playlist_songs.playlist_id ASC;
+--8. ANSWER: For Berevity, the above query returns all songs with those not included in any playlist displaying null under song_id and playlist_id.
+
+--Business Critical
+--9. QUESTION: Based on the genre of songs added to playlists, which genre should we focus on growing moving forward?
+--9. ANSWER: Dependent on if you want to grow the current trending genre that is Reggae. 
+--If you would like to focus on an emerging genre I would suggest R&B as this has a large amount of playlist additions.
+
+--10. QUESTION: Which users make up the percentage of users who haven't created playlists? What artists do they like?
+SELECT users.user_id, CONCAT_WS (' ',users.first_name, users.last_name) AS name, playlists.playlist_id
+FROM users
+LEFT JOIN playlists
+ON users.user_id = playlists.user_id
+ORDER BY playlist_id;
+--10. ANSWER: For Berevity, the above query returns all users by name, identifying wether they've created a playlist. Unfortunately because they haven't created a playlist I am 
+--unable to understand their listening habits as there isn't a table exploring listening habits or other interaction types.
+
+--11. QUESTION: Of the users on a free plan, when did they register? 
+SELECT *
+FROM users 
+WHERE subscription_type = 'free'
+ORDER BY registration_date;
+--11. ANSWER: These users registered between 2010 - 2021. This could inform CRM marketing efforts. 
